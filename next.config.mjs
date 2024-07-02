@@ -4,6 +4,14 @@ const nextConfig = {
     reactCompiler: true,
     ppr: 'incremental'
   },
+  images:{
+    remotePatterns:[
+      {
+        protocol:"https",
+        hostname:"cdn3.pixelcut.app"
+      }
+    ]
+  }
 };
 
 export default nextConfig;
