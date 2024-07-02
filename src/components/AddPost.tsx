@@ -2,7 +2,7 @@ import Image from "next/image"
 
 const AddPost =() => {
   return (
-    <div className="p-4 bg-white rounded-lg flex gap-4 justify-between text-sm">
+    <div className="p-4 bg-white shadow-md rounded-lg flex gap-4 justify-between text-sm">
         {/* AVATER */}
         <Image src="https://cdn3.pixelcut.app/assets/templates/ddf4b85a-2cd7-4d6f-b937-251dc9c00fd8/preview.jpg" width={48} height={48} alt="Avater" className="w-12 h-12 object-cover rounded-full"/>
          {/* POST */}

@@ -9,6 +9,9 @@ const nextConfig = {
       {
         protocol:"https",
         hostname:"cdn3.pixelcut.app"
+      },{
+        protocol:"https",
+        hostname:"cdn.pixelcut.app"
       }
     ]
   }
