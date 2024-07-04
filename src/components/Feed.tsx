@@ -5,7 +5,6 @@ const Feed = () => {
     <div className="p-4 bg-white shadow-md rounded-lg flex gap-12 flex-col">
         <Post/>
         <Post/>
-        <Post/>
     </div>
   )
 }
