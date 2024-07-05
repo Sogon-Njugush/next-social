@@ -12,6 +12,9 @@ const nextConfig = {
       },{
         protocol:"https",
         hostname:"cdn.pixelcut.app"
+      },{
+        protocol:"https",
+        hostname:"img.clerk.com"
       }
     ]
   }
