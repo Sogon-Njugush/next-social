@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import UserInfoCardInteraction from './UserInfoCardInteraction'
+import UpdateUser from './UpdateUser'
 
 const UserInfoCard = async({user}:{user:User}) => {
 
@@ -54,8 +55,12 @@ if(currentUserId){
       {/* TOP */}
       <div className='flex justify-between items-center font-medium'>
         <span className='text-gray-500'>User Information</span>
-          <Link href="" className=''>
-          </Link>
+        {currentUserId === user.id ? (
+          <UpdateUser/>
+        ) :
+          (<Link href="/" className=''>
+          </Link>)
+        }
       </div>
       {/* BOTTOM */}
       <div className='flex flex-col gap-4 text-gray-500'>
@@ -88,7 +93,9 @@ if(currentUserId){
             <span> Joined {formmatedDate}</span>
           </div>
         </div>
-        <UserInfoCardInteraction userId={user.id} currentUserId = {currentUserId} isUserBlocked = {isUserBlocked} isFollowing = {isFollowing} isFollowingSent= {isFollowingSent}/>
+        {(currentUserId && currentUserId !== user.id) && 
+        <UserInfoCardInteraction userId={user.id} isUserBlocked = {isUserBlocked} isFollowing = {isFollowing} isFollowingSent= {isFollowingSent}/>
+        }
       </div>
     </div>
   )

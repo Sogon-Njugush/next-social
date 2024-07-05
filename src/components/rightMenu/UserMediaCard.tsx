@@ -1,9 +1,24 @@
+import prisma from '@/lib/client'
 import { User } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const UserMediaCard = ({user}:{user:User}) => {
+const UserMediaCard = async ({user}:{user:User}) => {
+
+const postWithMedia = await prisma.post.findMany({
+  where:{
+    userId: user.id,
+    image:{
+      not:null
+    },
+  },
+  take: 8,
+  orderBy:{
+    createdAt: "desc"
+  }
+})
+
   return (
     <div className="p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-4">
       {/* TOP */}
@@ -14,30 +29,11 @@ const UserMediaCard = ({user}:{user:User}) => {
       </div>
       {/* BOTTOM */}
       <div className='flex gap-4 justify-between flex-wrap'>
-        <div className='relative w-1/5 h-24'>
-          <Image src="https://cdn.pixelcut.app/assets/discover/templates/8ZoN688XqYezl6deemRa/preview.jpg" alt='' className='object-cover rounded-md' fill/>
+        {postWithMedia.length ? postWithMedia.map (post =>(
+        <div className='relative w-1/5 h-24' key={post.id}>
+          <Image src={post.image!} alt='' className='object-cover rounded-md' fill/>
         </div>
-        <div className='relative w-1/5 h-24'>
-          <Image src="https://cdn.pixelcut.app/assets/discover/templates/8ZoN688XqYezl6deemRa/preview.jpg" alt='' className='object-cover rounded-md' fill/>
-        </div>
-        <div className='relative w-1/5 h-24'>
-          <Image src="https://cdn.pixelcut.app/assets/discover/templates/8ZoN688XqYezl6deemRa/preview.jpg" alt='' className='object-cover rounded-md' fill/>
-        </div>
-        <div className='relative w-1/5 h-24'>
-          <Image src="https://cdn.pixelcut.app/assets/discover/templates/8ZoN688XqYezl6deemRa/preview.jpg" alt='' className='object-cover rounded-md' fill/>
-        </div>
-        <div className='relative w-1/5 h-24'>
-          <Image src="https://cdn.pixelcut.app/assets/discover/templates/8ZoN688XqYezl6deemRa/preview.jpg" alt='' className='object-cover rounded-md' fill/>
-        </div>
-        <div className='relative w-1/5 h-24'>
-          <Image src="https://cdn.pixelcut.app/assets/discover/templates/8ZoN688XqYezl6deemRa/preview.jpg" alt='' className='object-cover rounded-md' fill/>
-        </div>
-        <div className='relative w-1/5 h-24'>
-          <Image src="https://cdn.pixelcut.app/assets/discover/templates/8ZoN688XqYezl6deemRa/preview.jpg" alt='' className='object-cover rounded-md' fill/>
-        </div>
-        <div className='relative w-1/5 h-24'>
-          <Image src="https://cdn.pixelcut.app/assets/discover/templates/8ZoN688XqYezl6deemRa/preview.jpg" alt='' className='object-cover rounded-md' fill/>
-        </div>
+        )): "No media found!"}
       </div>
     </div>
   )
