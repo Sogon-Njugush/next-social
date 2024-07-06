@@ -170,7 +170,9 @@ export const declineFollowrequest = async (userId:string) =>{
 
     // UPDATE USER PROFILE
 
-    export const updateProfile = async (formData: FormData, cover:string) => {
+    export const updateProfile = async (prevState:{success:boolean,error:boolean},payload:{formData: FormData, cover:string}) => {
+
+        const {formData, cover} = payload;
 
         const fields = Object.fromEntries(formData);
 
@@ -195,13 +197,13 @@ export const declineFollowrequest = async (userId:string) =>{
 
         if(!validatedFields.success){
             console.log(validatedFields.error.flatten().fieldErrors)
-            return "err"
+            return {success: false, error:true}
         }
 
         const {userId} = auth()
 
         if(!userId){
-            return "err"
+            return {success: false, error: true}
         }
 
         try {
@@ -210,10 +212,11 @@ export const declineFollowrequest = async (userId:string) =>{
                     id: userId
                 },
                 data: validatedFields.data
-            })
+            });
+            return {success:true, error: false}
             
         } catch (err) {
             console.log(err)
-            throw new Error("Something went Wrong!")
+            return {success:false, error: true}
         }
     }
