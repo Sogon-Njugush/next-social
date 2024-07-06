@@ -170,7 +170,7 @@ export const declineFollowrequest = async (userId:string) =>{
 
     // UPDATE USER PROFILE
 
-    export const updateProfile = async (formData: FormData) => {
+    export const updateProfile = async (formData: FormData, cover:string) => {
 
         const fields = Object.fromEntries(formData);
 
@@ -191,7 +191,7 @@ export const declineFollowrequest = async (userId:string) =>{
             website:z.string().max(100).optional(),
         });
 
-        const validatedFields = Profile.safeParse(filteredFields);
+        const validatedFields = Profile.safeParse({cover, ...filteredFields});
 
         if(!validatedFields.success){
             console.log(validatedFields.error.flatten().fieldErrors)
