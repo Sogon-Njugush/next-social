@@ -34,7 +34,6 @@ const PostInteraction = ({postId, likes, commentNumber}:{postId:number, likes:st
     }
 
   return (
-
      <div className='flex items-center justify-between text-sm my-4'>
             <div className='flex gap-8'>
                 <div className='flex items-center gap-4 bg-slate-50 p-2 rounded-xl'>
