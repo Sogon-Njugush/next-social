@@ -47,7 +47,7 @@ const PostInteraction = ({postId, likes, commentNumber}:{postId:number, likes:st
                 <div className='flex items-center gap-4 bg-slate-50 p-2 rounded-xl'>
                     <Image src='/comment.png' width={16} height={16} alt='' className='cursor-pointer'/>
                     <span className='text-gray-600'>|</span>
-                    <span className='text-gray-700'>124 <span className='hidden md:inline'> Comments</span></span>
+                    <span className='text-gray-700'>{commentNumber} <span className='hidden md:inline'> Comments</span></span>
                 </div>
             </div>
             <div className=''>
